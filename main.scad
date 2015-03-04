@@ -4,28 +4,10 @@
 //  This mesh is for use with the OpenSCAD
 use <text_on/text_on.scad>
 
-module drawSideText(sideText1 = "Name1",sideText2 = "Name2") {
-//  translate([11,-5,0]){
-//    rotate([100,0,90]){
-//      text(
-//        text=sideText1,
-//        size=2.8
-//        );
-//    };
-//
-//  }
-//  translate([-11,5,0]){
-//    rotate([100,0,-90]){
-//      text(
-//        text=sideText2,
-//        size=2.8
-//        );
-//    };
-//
-//  }
-}
 
-drawSideText(sideText1 = "Kalea1", sideText2 = "Kalea2");
+sideText = ["Kalea1","Kalea2"];
+topText = ["Summerfield","2014-2015"];
+
 displayMode = 0;  //  [0:Preview,1:Print]
 typeOfBling = 0;  //  [0:Championship Ring,1:Princess Ring,2:Necklace/Earring Pendant,3:Bracelet]
 drawEmblemBorders = 0; //  [0:No,1:Yes]
