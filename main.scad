@@ -9,12 +9,21 @@ use <text_on/text_on.scad>
 translate([11,-5,0]){
     rotate([90,0,90]){
         text(
-            text="Name",
+            text="Kalea",
             size=2.8
         );
-    };
-    
+    };    
  }
+ 
+translate([-11,5,0]){
+    rotate([90,0,-90]){
+        text(
+            text="Kalea",
+            size=2.8
+        );
+    };    
+ }
+ 
 displayMode = 0;  //  [0:Preview,1:Print]
 typeOfBling = 0;  //  [0:Championship Ring,1:Princess Ring,2:Necklace/Earring Pendant,3:Bracelet]
 drawEmblemBorders = 0; //  [0:No,1:Yes]
