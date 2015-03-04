@@ -17,5 +17,9 @@ Or, if you're a Chimera member, contact one of us directly and we'll grant you a
 
 * Zack Kakia
 * Caleb Adam Haye
+* Randy Hall
 * 3D Printer access provided by Chimera Art Space
 
+## Original Author
+
+In the spirit of open source, we blatently stole the basis of this project from another author.  The original ring project was on Thingiverse at [http://www.thingiverse.com/thing:50130](http://www.thingiverse.com/thing:50130)
