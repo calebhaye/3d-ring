@@ -5,8 +5,8 @@
 use <text_on/text_on.scad>
 
 
-sideText = ["KH","#39"];
-topText = ["Summerfield","2014-2015"];
+sideText = ["KH","#7"];
+topText = ["SUMMERFIELD","2015"];
 
 displayMode = 0;  //  [0:Preview,1:Print]
 typeOfBling = 0;  //  [0:Championship Ring,1:Princess Ring,2:Necklace/Earring Pendant,3:Bracelet]
@@ -76,6 +76,7 @@ emblemX5 = -(emblemOneSize+2*emblemThreeSize+emblemFiveSize);
 emblemH5 = sqrt((braceletWidth*braceletRatio)*(braceletWidth*braceletRatio) - emblemX5*emblemX5*braceletRatio*braceletRatio);
 
 module drawSideText(sideText = ["Name1","Name2"]) {
+//  translate([10,-4.65,0]){
   translate([10,-4.65,0]){
     rotate([80,0,90]){
       linear_extrude(height = 3) {
@@ -88,7 +89,7 @@ module drawSideText(sideText = ["Name1","Name2"]) {
     };
 
   }
-  translate([-10,7.15,0]){
+  translate([-10,4.5,0]){
     rotate([80,0,-90]){
       linear_extrude(height = 3) {
         text(
@@ -98,28 +99,40 @@ module drawSideText(sideText = ["Name1","Name2"]) {
           );
       };
     };
-
   }
 }
 
 module drawTopText(topText = ["topText[0]","topText[1]"]) {
   text_on_circle(
     t=topText[0],
-    spacing=0.9,
-    size=3.5,
+    spacing=0.8,
+    extrusion_height=3.5,
+    size=3.75,
     r=ringRadius - 4,
     rotate=180,
     font="Impact"
   );
-  text_on_circle(
-    t=topText[1],
-    spacing=0.7,
-    size=2.5,
-    ccw=true,
-    r=ringRadius - 4,
-    rotate=180,
-    font="Impact"
-  );
+  translate([6.0,7.5,0]){
+    rotate([0,0,-180]){
+        linear_extrude(height = 2) {
+            text(
+              text=topText[1],
+              size=5,
+              font="Impact"
+              );
+        }
+    }
+  };
+//  text_on_circle(
+//    t=topText[1],
+//    spacing=0.8,
+//    extrusion_height=3.5,
+//    size=5.0,
+//    ccw=true,
+//    r=ringRadius - 4.5,
+//    rotate=180,
+//    font="Impact"
+//  );
 }
 
 module drawBling_ChampionshipRing() {
@@ -525,7 +538,7 @@ module pickEmblem(myEmblem) {
   else if (myEmblem == 45) { drawWindows7Logo(); }
   else if (myEmblem == 46) { drawWindows8Logo(); }
   else if (myEmblem == 47) { drawYoshiEgg(); }
-  else if (myEmblem == 777) { drawBasketball(); }
+  else if (myEmblem == 777) { /*drawBasketball();*/ }
 }
 
 module drawBracelet() {
