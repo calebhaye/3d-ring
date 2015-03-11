@@ -5,8 +5,20 @@
 use <text_on/text_on.scad>
 
 
-sideText = ["KH","#7"];
-topText = ["SUMMERFIELD","2015"];
+sideText = ["SN","#3"]; // sophia
+topText = ["SWSF","2015"];
+
+sizeKey = 0;
+leftLocationKey = 1;
+leftRotationKey = 2;
+rightLocationKey = 3;
+rightRotationKey = 4;
+size16 = [16.71, [9,-4.65,0], [85,0,90], [-9,4.5,0], [85,0,-90]];
+size18 = [18.14, [10,-4.65,0], [80,0,90], [-10,4.5,0], [80,0,-90]];
+
+currentRingSize = size18;
+ringSize = currentRingSize[0];
+echo(ringSize);
 
 displayMode = 0;  //  [0:Preview,1:Print]
 typeOfBling = 0;  //  [0:Championship Ring,1:Princess Ring,2:Necklace/Earring Pendant,3:Bracelet]
@@ -17,7 +29,8 @@ reliefEmblems = 0;  //  [0:No,1:Yes]
 emblemOne = 777;  //  [1:Apple Logo,2:Arduino Logo,3:Autobot Emblem (Transformers),4:Avengers Logo,5:Batman Logo,6:Captain America Logo,7:DC Comics Logo,8:Deathly Hallows Emblem (Harry Potter),10:DO Staff,12:Flash Emblem,13:Gnome Logo,14:Guy Fawkes Mask,15:Halflife Logo,16:Hyrule Crest (Legend of Zelda),17:Imperial Emblem (Star Wars),18:Klingon Emblem (Star Trek),19:Mushroom (Mario),20:Marvel Comics Logo,21:MD Staff,22:Nintendo 64 Logo,26:Pokemon Logo,27:Portal Man,28:Raspberry Pi Logo,29:Rebel Insignia (Star Wars),30:Reddit Logo,31:Rockstar Games Logo,32:Samus Symbol (Metroid),33:Starfleet Insignia (Star Trek),34:Starfleet Insignia (Star Trek TNG),36:Steam Logo,37:Superman Emblem,38:Tree of Gondor (Lord of the Rings),39:Triforce (Legend of Zelda),40:Tux (Linux Mascot),41:Twitter Bird,43:Ubuntu Logo,44:Wii Logo,45:Windows 7 Logo,46:Windows 8 Logo,47:Yoshi Egg (Mario)
 emblemOneSize = 10;
 
-ringSize = 18.14; // [11.63:0,11.84:0.25,12.04:0.5 (A),12.24:0.75 (A 1/2),12.65:1 (B),12.85:1.25 (B 1/2),13.06:1.5 (C),13.26:1.75 (C 1/2),13.46:2 (D),13.67:2.25 (D 1/2),13.87:2.5 (E),14.07:2.75 (E 1/2),14.27:3 (F),14.48:3.25 (F 1/2),14.68:3.5 (G),14.88:3.75 (G 1/2),15.09:4 (H),15.29:4.25 (H 1/2),15.49:4.5 (I),15.7:4.75 (J),15.9:5 (J 1/2),16.1:5.25 (K),16.31:5.75 (L),16.51:6 (L 1/2),16.71:6.25 (M),16.92:6.5 (M 1/2),17.12:6.75 (N),17.32:7 (N 1/2),17.53:7.25 (O),17.73:7.5 (O 1/2),17.93:7.75 (P),18.14:8 (P 1/2),18.34:8.25 (Q),18.54:8.5 (Q 1/2),18.75:8.75 (R),18.95:9 (R 1/2),19.15:9.25 (S),19.35:9.5 (S 1/2),19.56:9.75 (T),19.76:10 (T 1/2),19.96:10.25 (U),20.17:10.5 (U 1/2),20.37:10.75 (V),20.57:11 (V 1/2),20.78:11.25 (W),20.98:11.5 (W 1/2),21.18:11.75 (X),21.39:12 (X 1/2),21.59:12.25 (Y),21.79:12.5 (Z),22:12.75 (Z 1/2),22.2:13,22.4:13.25 (Z1),22.61:13.5,22.81:13.75 (Z2),23.01:14 (Z3),23.22:14.25,23.42:14.5 (Z4),23.62:14.75,23.83:15,24.03:15.25,24.23:15.5,24.43:15.75,24.64:16]
+
+//ringSize = 16.71;//14.07;//18.14; // [11.63:0,11.84:0.25,12.04:0.5 (A),12.24:0.75 (A 1/2),12.65:1 (B),12.85:1.25 (B 1/2),13.06:1.5 (C),13.26:1.75 (C 1/2),13.46:2 (D),13.67:2.25 (D 1/2),13.87:2.5 (E),14.07:2.75 (E 1/2),14.27:3 (F),14.48:3.25 (F 1/2),14.68:3.5 (G),14.88:3.75 (G 1/2),15.09:4 (H),15.29:4.25 (H 1/2),15.49:4.5 (I),15.7:4.75 (J),15.9:5 (J 1/2),16.1:5.25 (K),16.31:5.75 (L),16.51:6 (L 1/2),16.71:6.25 (M),16.92:6.5 (M 1/2),17.12:6.75 (N),17.32:7 (N 1/2),17.53:7.25 (O),17.73:7.5 (O 1/2),17.93:7.75 (P),18.14:8 (P 1/2),18.34:8.25 (Q),18.54:8.5 (Q 1/2),18.75:8.75 (R),18.95:9 (R 1/2),19.15:9.25 (S),19.35:9.5 (S 1/2),19.56:9.75 (T),19.76:10 (T 1/2),19.96:10.25 (U),20.17:10.5 (U 1/2),20.37:10.75 (V),20.57:11 (V 1/2),20.78:11.25 (W),20.98:11.5 (W 1/2),21.18:11.75 (X),21.39:12 (X 1/2),21.59:12.25 (Y),21.79:12.5 (Z),22:12.75 (Z 1/2),22.2:13,22.4:13.25 (Z1),22.61:13.5,22.81:13.75 (Z2),23.01:14 (Z3),23.22:14.25,23.42:14.5 (Z4),23.62:14.75,23.83:15,24.03:15.25,24.23:15.5,24.43:15.75,24.64:16]
 ringRadius = 1.25*ringSize/2;
 
 braceletWidth = 55;
@@ -76,9 +89,11 @@ emblemX5 = -(emblemOneSize+2*emblemThreeSize+emblemFiveSize);
 emblemH5 = sqrt((braceletWidth*braceletRatio)*(braceletWidth*braceletRatio) - emblemX5*emblemX5*braceletRatio*braceletRatio);
 
 module drawSideText(sideText = ["Name1","Name2"]) {
-//  translate([10,-4.65,0]){
-  translate([10,-4.65,0]){
-    rotate([80,0,90]){
+//  translate([10,-4.65,0]){ // default ring 18..
+//  translate([7.5,-4.65,0]){ // 14.07
+  translate(currentRingSize[1]){ // 14.07
+//    rotate([80,0,90]){ // default ring
+    rotate(currentRingSize[2]){ // 14.07
       linear_extrude(height = 3) {
         text(
           text=sideText[0],
@@ -89,8 +104,11 @@ module drawSideText(sideText = ["Name1","Name2"]) {
     };
 
   }
-  translate([-10,4.5,0]){
-    rotate([80,0,-90]){
+//  translate([-10,4.5,0]){ // default ring
+//  translate([-7.5,4.5,0]){ // 14.07
+  translate(currentRingSize[3]){ // 16.71
+    // rotate([80,0,-90]){ //default ring
+    rotate(currentRingSize[4]){ // 14.07
       linear_extrude(height = 3) {
         text(
           text=sideText[1],
@@ -103,16 +121,27 @@ module drawSideText(sideText = ["Name1","Name2"]) {
 }
 
 module drawTopText(topText = ["topText[0]","topText[1]"]) {
-  text_on_circle(
-    t=topText[0],
-    spacing=0.8,
-    extrusion_height=3.5,
-    size=3.75,
-    r=ringRadius - 4,
-    rotate=180,
-    font="Impact"
-  );
-  translate([6.0,7.5,0]){
+//  text_on_circle(
+//    t=topText[0],
+//    spacing=0.8,
+//    extrusion_height=3.5,
+//    size=3.75,
+//    r=ringRadius - 4,
+//    rotate=180,
+//    font="Impact"
+//  );
+  translate([7.8,-0.5,0]){
+    rotate([0,0,-180]){
+        linear_extrude(height = 2) {
+            text(
+              text=topText[0],
+              size=5.7,
+              font="Impact"
+              );
+        }
+    }
+  };
+  translate([6.0,7,0]){
     rotate([0,0,-180]){
         linear_extrude(height = 2) {
             text(
