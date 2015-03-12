@@ -5,7 +5,59 @@
 use <text_on/text_on.scad>
 
 
-sideText = ["SN","#3"]; // sophia
+//3       Sophia Nielsen  So.     5-9
+//4       Sabrina Mann    Sr.     5-5
+//11      Ashlyn Dean     Sr.     5-6
+//12      Isabelle Dean   Fr.     5-7
+//14      Allison Boshell So.     5-8
+//23      Virginia Wooldridge     Fr.     5-10
+//24      Olivia Ramirez  Jr.     5-7
+//33      Zoe Hunt        Sr.     5-6
+//34      Kayla Wooldridge        Sr.     5-9
+//35      Dahnia Campos   So.     5-4
+
+sideAOffset = -1;
+sideBOffset = 1;
+//sideText = ["SN","#3"]; // Sophia
+//sideAOffset = 0;
+//sideBOffset = 0;
+
+//sideText = ["SM","#4"]; // Sabrina
+//sideAOffset = -1;
+//sideBOffset = 1;
+
+//sideText = ["AD","#11"]; // Ashlyn
+//sideAOffset = 0;
+//sideBOffset = 2;
+
+//sideText = ["ID","#12"]; // Isabelle
+//sideAOffset = 2;
+//sideBOffset = 2;
+
+//sideText = ["AB","#14"]; // Allison
+//sideAOffset = 0;
+//sideBOffset = 2;
+
+//sideText = ["VW","#23"]; // Virginia
+//sideAOffset = -2;
+//sideBOffset = 2.5;
+
+//sideText = ["OR","#24"]; // Olivia
+//sideAOffset = -.5;
+//sideBOffset = 2.5;
+
+//sideText = ["ZOE","#33"]; // Zoe
+//sideAOffset = -2;
+//sideBOffset = 2.5;
+
+//sideText = ["KW","#34"]; // Kayla
+//sideAOffset = -1.75;
+//sideBOffset = 2.5;
+
+sideText = ["DC","#35"]; // Dahnia
+sideAOffset = -0.5;
+sideBOffset = 2.50;
+
 topText = ["SWSF","2015"];
 
 sizeKey = 0;
@@ -13,10 +65,14 @@ leftLocationKey = 1;
 leftRotationKey = 2;
 rightLocationKey = 3;
 rightRotationKey = 4;
-size16 = [16.71, [9,-4.65,0], [85,0,90], [-9,4.5,0], [85,0,-90]];
-size18 = [18.14, [10,-4.65,0], [80,0,90], [-10,4.5,0], [80,0,-90]];
 
-currentRingSize = size18;
+// [ringSize, sideALocation, sideARotation, sideBLocation, sideBRotation]
+size16 = [16.71, [9,-4.65 + sideAOffset,0], [85,0,90], [-9,4.5 + sideBOffset,0], [85,0,-90]];
+size18 = [18.14, [10,-4.65 + sideAOffset,0], [80,0,90], [-10,4.5 + sideBOffset,0], [80,0,-90]];
+size20 = [20.17, [11,-4.65 + sideAOffset,0], [80,0,90], [-11,4.5 + sideBOffset,0], [80,0,-90]];
+
+drawSide = false;
+currentRingSize = size20;
 ringSize = currentRingSize[0];
 echo(ringSize);
 
@@ -89,35 +145,39 @@ emblemX5 = -(emblemOneSize+2*emblemThreeSize+emblemFiveSize);
 emblemH5 = sqrt((braceletWidth*braceletRatio)*(braceletWidth*braceletRatio) - emblemX5*emblemX5*braceletRatio*braceletRatio);
 
 module drawSideText(sideText = ["Name1","Name2"]) {
-//  translate([10,-4.65,0]){ // default ring 18..
-//  translate([7.5,-4.65,0]){ // 14.07
-  translate(currentRingSize[1]){ // 14.07
-//    rotate([80,0,90]){ // default ring
-    rotate(currentRingSize[2]){ // 14.07
-      linear_extrude(height = 3) {
-        text(
-          text=sideText[0],
-          size=8,
-          font="Impact"
-          );
-      };
-    };
+    if(drawSide == true)
+    {
+                
+        //  translate([10,-4.65,0]){ // default ring 18..
+        //  translate([7.5,-4.65,0]){ // 14.07
+          translate(currentRingSize[1]){ // 14.07
+        //    rotate([80,0,90]){ // default ring
+            rotate(currentRingSize[2]){ // 14.07
+              linear_extrude(height = 3) {
+                text(
+                  text=sideText[0],
+                  size=8,
+                  font="Impact"
+                  );
+              };
+            };
 
-  }
-//  translate([-10,4.5,0]){ // default ring
-//  translate([-7.5,4.5,0]){ // 14.07
-  translate(currentRingSize[3]){ // 16.71
-    // rotate([80,0,-90]){ //default ring
-    rotate(currentRingSize[4]){ // 14.07
-      linear_extrude(height = 3) {
-        text(
-          text=sideText[1],
-          size=7.5,
-          font="Impact"
-          );
-      };
-    };
-  }
+          }
+        //  translate([-10,4.5,0]){ // default ring
+        //  translate([-7.5,4.5,0]){ // 14.07
+          translate(currentRingSize[3]){ // 16.71
+            // rotate([80,0,-90]){ //default ring
+            rotate(currentRingSize[4]){ // 14.07
+              linear_extrude(height = 3) {
+                text(
+                  text=sideText[1],
+                  size=7.5,
+                  font="Impact"
+                  );
+              };
+            };
+          }
+      }
 }
 
 module drawTopText(topText = ["topText[0]","topText[1]"]) {
